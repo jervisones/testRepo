@@ -21,8 +21,8 @@ jobs:
         run: |
           git config user.name "Cenkaifeng"
           git config user.email "cenkaifeng@ones.com"
-          git add package.json
-          git commit -m "Update version to ${{ env.VERSION }} for release ${{ github.ref }}"
+          git add .
+          git commit -m "Update version to ${{ github.event.release.tag_name }} for release ${{ github.ref }}"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
