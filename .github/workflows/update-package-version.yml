@@ -23,14 +23,10 @@ jobs:
           git config user.email "cenkaifeng@ones.com"
           git add .
           git commit -m "Update version to ${{ github.event.release.tag_name }} for release ${{ github.ref }}"
+          git tag ${{ github.ref }}
+          git push --follow-tags
 
       - name: Push changes
         uses: ad-m/github-push-action@master
-
-      - name: Create or update tag
-        run: |
-          git tag -f ${{ github.ref }} ${{ github.sha }}
-          git push -f origin ${{ github.ref }}
-
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
