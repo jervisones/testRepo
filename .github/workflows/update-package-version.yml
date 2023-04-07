@@ -16,3 +16,13 @@ jobs:
           node ./scripts/update-version.js ${{ github.event.release.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit changes
+        run: |
+          git add package.json
+          git commit -m "Update version to ${{ env.VERSION }} for release ${{ github.ref }}"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
