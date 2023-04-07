@@ -33,6 +33,6 @@ jobs:
       - name: Tag Push changes
         run: |
           git tag -f ${{ github.event.release.tag_name }} $git_hash
-          git push --tags
+          git push --force origin ${{ github.event.release.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
