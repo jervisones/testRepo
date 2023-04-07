@@ -16,9 +16,11 @@ jobs:
           node ./scripts/update-version.js ${{ github.event.release.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          
       - name: Commit changes
         run: |
+          git config user.name "Cenkaifeng"
+          git config user.email "cenkaifeng@ones.com"
           git add package.json
           git commit -m "Update version to ${{ env.VERSION }} for release ${{ github.ref }}"
 
