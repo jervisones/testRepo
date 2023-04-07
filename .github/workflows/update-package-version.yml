@@ -10,9 +10,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          node-version: 16.15
-          
+
       - name: Update package.json
         run: |
           node ./scripts/update-version.js ${{ github.event.release.tag_name }}
